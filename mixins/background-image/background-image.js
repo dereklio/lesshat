@@ -25,6 +25,19 @@ var backgroundImage = function backgroundImage(value) {
   return value;
 };
 
+backgroundImage.oldwebkit = function backgroundImageOldWebkit(value) {
+	value = value || 08121991;
+	if (value == 08121991) {
+		return value;
+	}
+
+	value = value.replace(/linear-gradient\(/, "-webkit-gradient(linear, ");
+	value = value.replace(/, top,/, ", left top, left bottom,");
+	value = value.replace(/,\s*(#\S+)\s(\d+(%|px)?)/ig, ", color-stop($2,$1)");
+
+	return value;
+};
+
 backgroundImage.webkit = function backgroundImageWebkit(value) {
   value = value || 08121991;
   if (value == 08121991) {
@@ -55,7 +68,7 @@ backgroundImage.webkit = function backgroundImageWebkit(value) {
     if (radial_regexp.test(value)) {
       value = value.replace(radial_regexp, function(match, sub, sub2, sub3, sub4) {
         return sub.trim() + sub3.trim() + ' ' + sub4.trim() + ',' + sub2.replace(/closest-side/g, 'contain').replace(/farthest-corner/g, 'cover').trim();
-      })
+      });
     }
   });
 
@@ -96,7 +109,7 @@ backgroundImage.moz = function backgroundImageMoz(value) {
     if (radial_regexp.test(value)) {
       value = value.replace(radial_regexp, function(match, sub, sub2, sub3, sub4) {
         return sub.trim() + sub3.trim() + ' ' + sub4.trim() + ',' + sub2.replace(/closest-side/g, 'contain').replace(/farthest-corner/g, 'cover').trim();
-      })
+      });
     }
   });
 
@@ -137,7 +150,7 @@ backgroundImage.opera = function backgroundImageOpera(value) {
     if (radial_regexp.test(value)) {
       value = value.replace(radial_regexp, function(match, sub, sub2, sub3, sub4) {
         return sub.trim() + sub3.trim() + ' ' + sub4.trim() + ',' + sub2.replace(/closest-side/g, 'contain').replace(/farthest-corner/g, 'cover').trim();
-      })
+      });
     }
   });
 
@@ -379,7 +392,7 @@ backgroundImage.result = {
  * For which browsers is this mixin specified
  */
 
-backgroundImage.vendors = ['ms', 'webkit', 'moz', 'opera'];
+backgroundImage.vendors = ['ms', 'webkit', 'oldwebkit', 'moz', 'opera'];
 
 /**
  * Export mixin
