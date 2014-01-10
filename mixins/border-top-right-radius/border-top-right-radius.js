@@ -11,7 +11,7 @@ var borderTopRightRadius = function borderTopRightRadius(value) {
     value = value.replace(/(?:,)(?![^(]*\))/g, '');
   }
 
-  if (numRegex.test(value)) {
+  if (numRegex.test(value) && ('0' !== value)) {
     value = value.replace(numWithoutValue, function(match) {
       return match + 'px';
     });
