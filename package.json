@@ -1,7 +1,7 @@
 {
   "name": "lesshat",
   "description": "Most advanced LESS CSS mixins library",
-  "version": "2.0.13",
+  "version": "2.0.13dereklio-1.0",
   "homepage": "http://lesshat.com/",
   "author": {
     "name": "Petr Brzek",
@@ -11,6 +11,10 @@
     {
       "name": "Jan Kuca",
       "url": "www.jankuca.com"
+    },
+    {
+      "name": "Deryck Lio",
+      "url": "http://deryck.co"
     }
   ],
   "keywords": [
